@@ -14,6 +14,11 @@ const playerPosition = {
     y: undefined,
 };
 
+const giftPosition = {
+    x: undefined,
+    y: undefined,
+};
+
 window.addEventListener('load', setCanvasSize);
 window.addEventListener('resize', setCanvasSize);
 
@@ -23,14 +28,14 @@ function setCanvasSize() {
     canvas.setAttribute('width', canvasSize);
     canvas.setAttribute('height', canvasSize);
 
-    elementSize = canvasSize / 10.1;
+    elementSize = canvasSize / 10;
 
     startGame();
 }
 
 function startGame() {
 
-    game.font = elementSize + 'px Verdana';
+    game.font = (elementSize * 0.95) + 'px Verdana';
     game.textAlign = 'end';
 
     const map = maps[0];
@@ -43,8 +48,8 @@ function startGame() {
     mapRowCols.forEach((row, rowI) => {
         row.forEach((col, colI) => {
             const emoji = emojis[col];
-            const posX = elementSize * (colI + 1);
-            const posY = elementSize * (rowI + 1);
+            const posX = (elementSize) * (colI + 1);
+            const posY = (elementSize) * (rowI + 1);
 
             if (col == 'O') {
                 if (!playerPosition.x && !playerPosition.y) {
@@ -52,9 +57,12 @@ function startGame() {
                     playerPosition.y = posY;
                     console.log({playerPosition});
                 }
+            } else if (col == 'I') {
+                giftPosition.x = posX;
+                giftPosition.y = posY;
             }
 
-            game.fillText(emoji, posX + 11, posY - 6);
+            game.fillText(emoji, posX + 9, posY - 9);
         });
     });
 
@@ -79,8 +87,16 @@ function startGame() {
 }
 
 function movePlayer() {
-    game.font = elementSize * 0.8 + 'px Verdana';
-    game.fillText(emojis['PLAYER'], playerPosition.x + 3, playerPosition.y - 10);
+    const giftCollisionX = playerPosition.x.toFixed() == giftPosition.x.toFixed();
+    const giftCollisionY = playerPosition.y.toFixed() == giftPosition.y.toFixed();
+    const giftCollision = giftCollisionX && giftCollisionY;
+
+    if (giftCollision) {
+        console.log('Subiste de nivel!!');
+    }
+
+    game.font = (elementSize * 0.9) + 'px Verdana';
+    game.fillText(emojis['PLAYER'], playerPosition.x + 7, playerPosition.y - 10);
 }
 
 btnUp.addEventListener('click', moveUp);
@@ -92,7 +108,7 @@ window.addEventListener('keydown', moveByKeys);
 function moveUp() {
     console.log('Me quiero mover hacia arriba');
 
-    if ((playerPosition.y - elementSize) < (elementSize - 1)) {
+    if ((playerPosition.y - elementSize) < elementSize) {
         console.log('Out');
     } else {
         playerPosition.y -= elementSize;
