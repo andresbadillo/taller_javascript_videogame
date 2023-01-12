@@ -41,7 +41,7 @@ function fixNumber(n) {
 }
 
 function setCanvasSize() {
-    canvasSize = Math.min(window.innerHeight, window.innerWidth) * 0.8;
+    canvasSize = Math.min(window.innerHeight, window.innerWidth) * 0.7;
 
     canvasSize = fixNumber(canvasSize);
 
