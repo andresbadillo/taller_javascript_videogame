@@ -9,6 +9,8 @@ const spanLives = document.querySelector('#lives');
 const spanTime = document.querySelector('#time');
 const spanRecord = document.querySelector('#record');
 const pResult = document.querySelector('#result');
+const spanReplay = document.querySelector('#replay');
+
 
 let canvasSize;
 let elementSize;
@@ -185,14 +187,15 @@ function gameWin() {
         if (recordTime >= playerTime) {
             localStorage.setItem('record_time', playerTime);
             pResult.innerHTML = 'Superaste el record!!! 😀';
-
+            spanReplay.innerHTML = 'Volver a jugar';
         } else {
             pResult.innerHTML = 'No superaste el record 🥲';
+            spanReplay.innerHTML = 'Volver a jugar';
         }
     } else {
         localStorage.setItem('record_time', playerTime);
         pResult.innerHTML = 'Es tu primera vez jugando';
-
+        spanReplay.innerHTML = 'Volver a jugar';
     }
 
     console.log({recordTime, playerTime});
@@ -219,6 +222,9 @@ btnLeft.addEventListener('click', moveLeft);
 btnRight.addEventListener('click', moveRight);
 btnDown.addEventListener('click', moveDown);
 window.addEventListener('keydown', moveByKeys);
+spanReplay.addEventListener('click', _ => {
+    location.reload();
+});
 
 function moveUp() {
     console.log('Me quiero mover hacia arriba');

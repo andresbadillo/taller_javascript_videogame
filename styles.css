@@ -49,15 +49,28 @@
   .messages {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     margin: 0 auto;
     width: 80%;
     max-width: 460px;
   }
   
   p {
-    display: block;
+    display: flex;
+    justify-content: center;
     margin: 0;
     width: 100%;
+  }
+
+  .replay {
+    margin-top: 10px;
+    border: 2px solid #ff6600;
+    background-color: #fdef05;
+    color: black;
+    border-radius: 8px;
+    font-family: inherit;
+    padding: 5px 20px;
+    cursor: pointer;
   }
   
   @media (max-width: 440px) {
