@@ -165,6 +165,7 @@ function levelFail() {
         level = 0;
         lives = 3;
         timeStart = undefined;
+        replay();
     }
 
     playerPosition.x = undefined;
@@ -203,11 +204,21 @@ function showLives() {
 }
 
 function showTime() {
-    spanTime.innerHTML = Date.now() - timeStart;
+    if (!timeStart) {
+        spanTime.innerHTML = '0';
+    } else {
+        spanTime.innerHTML = Date.now() - timeStart;
+    }
+    // spanTime.innerHTML = Date.now() - timeStart;
 }
 
 function showRecord() {
-    spanRecord.innerHTML = localStorage.getItem('record_time');
+    const currentRecord = localStorage.getItem('record_time');
+    if (!currentRecord) {
+        spanRecord.innerHTML = 'No hay records';
+    } else {
+        spanRecord.innerHTML = localStorage.getItem('record_time');
+    }
 }
 
 btnUp.addEventListener('click', moveUp);
@@ -215,9 +226,11 @@ btnLeft.addEventListener('click', moveLeft);
 btnRight.addEventListener('click', moveRight);
 btnDown.addEventListener('click', moveDown);
 window.addEventListener('keydown', moveByKeys);
-spanReplay.addEventListener('click', _ => {
+spanReplay.addEventListener('click', replay);
+
+function replay() {
     location.reload();
-});
+}
 
 function moveUp() {
     console.log('Me quiero mover hacia arriba');

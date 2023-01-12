@@ -62,7 +62,7 @@
   .replay {
     margin-top: 20px;
     margin-bottom: 20px;
-    width: fit-content;
+    width: max-content;
     border: 2px solid #ff6600;
     background-color: #fdef05;
     color: black;
