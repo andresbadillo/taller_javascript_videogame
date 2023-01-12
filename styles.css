@@ -38,12 +38,9 @@
     border-radius: 8px;
     border-color: #ff6600;
     font-family: inherit;
-    margin: 0;
+    margin: 5px;
     padding: 5px 20px;
     width: 100px;
-  }
-  button:not(:last-child) {
-    margin-right: 10px;
   }
   
   .messages {
@@ -63,7 +60,8 @@
   }
 
   .replay {
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     border: 2px solid #ff6600;
     background-color: #fdef05;
     color: black;

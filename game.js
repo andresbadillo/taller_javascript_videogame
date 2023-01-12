@@ -187,15 +187,12 @@ function gameWin() {
         if (recordTime >= playerTime) {
             localStorage.setItem('record_time', playerTime);
             pResult.innerHTML = 'Superaste el record!!! 😀';
-            spanReplay.innerHTML = 'Volver a jugar';
         } else {
             pResult.innerHTML = 'No superaste el record 🥲';
-            spanReplay.innerHTML = 'Volver a jugar';
         }
     } else {
         localStorage.setItem('record_time', playerTime);
         pResult.innerHTML = 'Es tu primera vez jugando';
-        spanReplay.innerHTML = 'Volver a jugar';
     }
 
     console.log({recordTime, playerTime});
